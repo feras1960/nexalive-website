@@ -8,6 +8,42 @@ import { NexaLiveLanguageProvider, useNexaLanguage } from "../NexaLiveLanguageCo
 import { NexaPageWrapper, PageHero, NexaSection, FeatureCard, NexaCTABanner } from "../NexaPageTemplate";
 import { useScrollFadeUp } from "../useAnimations";
 
+function VideoShowcaseCard({ videoSrc, titleKey, descKey, icon }: {
+  videoSrc: string; titleKey: string; descKey: string; icon: React.ReactNode;
+}) {
+  const { t } = useNexaLanguage();
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="group relative rounded-2xl overflow-hidden border dark:border-white/5 border-gray-100"
+    >
+      <div className="relative aspect-video overflow-hidden">
+        <video
+          src={videoSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center backdrop-blur-sm border border-red-500/30">
+              {icon}
+            </div>
+            <h3 className="text-lg font-bold text-white">{t(titleKey)}</h3>
+          </div>
+          <p className="text-white/70 text-sm leading-relaxed">{t(descKey)}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function DetailedFeatureBlock({ icon, titleKey, descKey, points }: { 
   icon: React.ReactNode; titleKey: string; descKey: string; points: string[] 
 }) {
@@ -56,8 +92,38 @@ function NexaSOSContent() {
         titleKey="nexa.sos.title"
         subtitleKey="nexa.sos.subtitle"
         gradient="from-red-500/10 to-transparent"
-        // videoSrc will be added later by the user
+        videoSrc="/videos/features/sos-phone-ground.mp4"
       />
+
+      {/* Video Showcase: Emergency Scenarios */}
+      <NexaSection titleKey="nexa.sos.scenarios.title" subtitleKey="nexa.sos.scenarios.subtitle" id="scenarios">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <VideoShowcaseCard
+            videoSrc="/videos/features/sos-phone-ground.mp4"
+            titleKey="nexa.sos.scenario.alert.title"
+            descKey="nexa.sos.scenario.alert.desc"
+            icon={<Siren className="w-5 h-5 text-red-400" />}
+          />
+          <VideoShowcaseCard
+            videoSrc="/videos/features/sos-pocket-grab.mp4"
+            titleKey="nexa.sos.scenario.quick.title"
+            descKey="nexa.sos.scenario.quick.desc"
+            icon={<Activity className="w-5 h-5 text-red-400" />}
+          />
+          <VideoShowcaseCard
+            videoSrc="/videos/features/sos-swipe-activate.mp4"
+            titleKey="nexa.sos.scenario.activate.title"
+            descKey="nexa.sos.scenario.activate.desc"
+            icon={<ShieldAlert className="w-5 h-5 text-red-400" />}
+          />
+          <VideoShowcaseCard
+            videoSrc="/videos/features/sos-command-center.mp4"
+            titleKey="nexa.sos.scenario.response.title"
+            descKey="nexa.sos.scenario.response.desc"
+            icon={<Map className="w-5 h-5 text-red-400" />}
+          />
+        </div>
+      </NexaSection>
 
       {/* Features Grid */}
       <NexaSection titleKey="nexa.sos.features.title" subtitleKey="nexa.sos.features.subtitle" id="features">
