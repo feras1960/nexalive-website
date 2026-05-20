@@ -1,0 +1,11 @@
+---
+import NexaLiveLayout from "../layouts/NexaLiveLayout.astro";
+import { NexaTermsPage } from "../components/react/nexalive/pages/NexaLegalPages";
+
+const title = "Terms of Service | NexaLive";
+const description = "NexaLive Terms of Service — usage policies, acceptable use, account terms, and service-specific disclaimers for enterprise communication services.";
+---
+
+<NexaLiveLayout title={title} description={description}>
+  <NexaTermsPage client:load />
+</NexaLiveLayout>

@@ -1,0 +1,11 @@
+---
+import NexaLiveLayout from "../layouts/NexaLiveLayout.astro";
+import { NexaCookiePolicyPage } from "../components/react/nexalive/pages/NexaLegalPages";
+
+const title = "Cookie Policy | NexaLive";
+const description = "Learn how NexaLive uses cookies to improve your experience. Essential, analytics, and preference cookies explained.";
+---
+
+<NexaLiveLayout title={title} description={description}>
+  <NexaCookiePolicyPage client:load />
+</NexaLiveLayout>

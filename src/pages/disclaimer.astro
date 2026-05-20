@@ -1,0 +1,11 @@
+---
+import NexaLiveLayout from "../layouts/NexaLiveLayout.astro";
+import { NexaDisclaimerPage } from "../components/react/nexalive/pages/NexaLegalPages";
+
+const title = "Disclaimer — SOS, Mesh & Emergency Services | NexaLive";
+const description = "Important disclaimers for NexaLive emergency SOS services, Bluetooth Mesh networking, and lone worker protection. NexaLive is not a substitute for official emergency services.";
+---
+
+<NexaLiveLayout title={title} description={description}>
+  <NexaDisclaimerPage client:load />
+</NexaLiveLayout>

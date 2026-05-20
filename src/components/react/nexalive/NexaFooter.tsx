@@ -130,6 +130,9 @@ const NexaFooter: React.FC = () => {
               <a href="https://texacore.com" className="text-white/40 hover:text-[var(--accent-primary)] transition-colors text-sm">TexaCore ERP</a>
               <a href="/contact" className="text-white/40 hover:text-[var(--accent-primary)] transition-colors text-sm">{t("nexa.footer.contact")}</a>
               <a href="/privacy" className="text-white/40 hover:text-[var(--accent-primary)] transition-colors text-sm">{t("nexa.footer.privacy")}</a>
+              <a href="/terms" className="text-white/40 hover:text-[var(--accent-primary)] transition-colors text-sm">{t("nexa.footer.terms")}</a>
+              <a href="/disclaimer" className="text-white/40 hover:text-[var(--accent-primary)] transition-colors text-sm">{t("nexa.footer.disclaimer")}</a>
+              <a href="/cookies" className="text-white/40 hover:text-[var(--accent-primary)] transition-colors text-sm">{t("nexa.footer.cookies")}</a>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { useScrollFadeUp, useScrollStagger, useInView } from "./useAnimations";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import NexaHeader from "./NexaHeader";
 import NexaFooter from "./NexaFooter";
+import NexaCookieConsent from "./NexaCookieConsent";
 
 interface FeatureItem {
   icon: React.ReactNode;
@@ -241,6 +242,7 @@ export function NexaPageWrapper({ children }: { children: React.ReactNode }) {
       <NexaHeader />
       {children}
       <NexaFooter />
+      <NexaCookieConsent />
     </div>
   );
 }
