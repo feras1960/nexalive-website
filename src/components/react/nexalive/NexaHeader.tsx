@@ -158,14 +158,16 @@ const NexaHeader: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4 }}
                     transition={{ duration: 0.12 }}
-                    className={`absolute top-full mt-2 w-44 bg-[var(--bg-dark-section)] rounded-xl shadow-2xl overflow-hidden py-1 border border-[var(--border-light)] ${isRTL ? "left-0" : "right-0"}`}
+                    className={`absolute top-full mt-2 w-44 rounded-2xl shadow-[0_8px_40px_-8px_rgba(0,0,0,0.4)] overflow-hidden py-2 ${isRTL ? "left-0" : "right-0"}
+                      dark:bg-[#0f1117]/70 bg-white/70 backdrop-blur-2xl backdrop-saturate-150
+                      border dark:border-white/[0.08] border-gray-200/60`}
                   >
                     {Object.entries(languageNames).map(([code, name]) => (
                       <button
                         key={code}
                         onClick={() => { setLanguage(code as Language); setIsLangMenuOpen(false); }}
-                        className={`w-full text-${isRTL ? "right" : "left"} px-4 py-2 text-sm transition-colors ${
-                          language === code ? "text-[var(--accent-primary)] font-bold bg-[var(--bg-secondary)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]"
+                        className={`w-full text-${isRTL ? "right" : "left"} px-4 py-2.5 text-sm transition-colors ${
+                          language === code ? "text-[var(--accent-primary)] font-bold dark:bg-white/[0.06] bg-gray-100/80" : "dark:text-white/70 text-gray-600 dark:hover:text-white hover:text-gray-900 dark:hover:bg-white/[0.04] hover:bg-gray-100/60"
                         }`}
                       >
                         {name}
@@ -227,7 +229,7 @@ const NexaHeader: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-16 left-0 right-0 bg-[#0A0A0A] border-t border-[var(--border-light)] shadow-2xl"
+            className="absolute top-16 left-0 right-0 dark:bg-[#0a0e17]/75 bg-white/75 backdrop-blur-2xl backdrop-saturate-150 border-t dark:border-white/[0.06] border-gray-200/60 shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4)]"
             onMouseEnter={cancelClose}
             onMouseLeave={closeMegaDelayed}
             dir={isRTL ? 'rtl' : 'ltr'}
@@ -236,14 +238,14 @@ const NexaHeader: React.FC = () => {
               <div className="grid grid-cols-4 gap-8">
                 {/* Col 1: Core Communication */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] dark:text-white/40 text-gray-400 font-semibold mb-4">
                     {t("nexa.ui.core_communication")}
                   </h4>
                   {featureLinks.slice(0, 4).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href + link.key} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        className="flex items-center gap-3 py-2.5 dark:text-white/70 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors group">
                         <Icon className={`w-4 h-4 ${link.color} opacity-70 group-hover:opacity-100`} />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
@@ -252,14 +254,14 @@ const NexaHeader: React.FC = () => {
                 </div>
                 {/* Col 2: Advanced */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] dark:text-white/40 text-gray-400 font-semibold mb-4">
                     {t("nexa.ui.advanced_features")}
                   </h4>
                   {featureLinks.slice(4).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href + link.key} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        className="flex items-center gap-3 py-2.5 dark:text-white/70 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors group">
                         <Icon className={`w-4 h-4 ${link.color} opacity-70 group-hover:opacity-100`} />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
@@ -268,28 +270,28 @@ const NexaHeader: React.FC = () => {
                 </div>
                 {/* Col 3: Platform */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] dark:text-white/40 text-gray-400 font-semibold mb-4">
                     {t("nexa.ui.platform")}
                   </h4>
                   <a href="/features" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-[#00C47A] hover:text-white font-medium transition-colors">
                     {t("nexa.ui.browse_all_features")} &rarr;
                   </a>
-                  <a href="/#download" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-white/60 hover:text-white transition-colors">
+                  <a href="/#download" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] dark:text-white/60 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors">
                     {t("nexa.ui.download_app")}
                   </a>
-                  <a href="/for-business" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-white/60 hover:text-white transition-colors">
+                  <a href="/for-business" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] dark:text-white/60 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors">
                     {t("nexa.ui.for_business")}
                   </a>
                 </div>
                 {/* Col 4: Highlight */}
-                <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <div className="dark:bg-white/5 bg-gray-100/60 rounded-2xl p-6 border dark:border-white/10 border-gray-200/60">
                   <div className="text-[#00C47A] text-xs font-semibold uppercase tracking-wider mb-2">
                     {t("nexa.ui.new")}
                   </div>
-                  <h4 className="text-white font-bold text-lg mb-2">
+                  <h4 className="dark:text-white text-gray-900 font-bold text-lg mb-2">
                     {t("nexa.ui.nexamesh")}
                   </h4>
-                  <p className="text-white/50 text-sm mb-4 leading-relaxed">
+                  <p className="dark:text-white/50 text-gray-500 text-sm mb-4 leading-relaxed">
                     {t("nexa.ui.communication_without_internet")}
                   </p>
                   <a href="/features/mesh" onClick={() => setMegaMenu(null)}
@@ -312,7 +314,7 @@ const NexaHeader: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-16 left-0 right-0 bg-[#0A0A0A] border-t border-[var(--border-light)] shadow-2xl"
+            className="absolute top-16 left-0 right-0 dark:bg-[#0a0e17]/75 bg-white/75 backdrop-blur-2xl backdrop-saturate-150 border-t dark:border-white/[0.06] border-gray-200/60 shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4)]"
             onMouseEnter={cancelClose}
             onMouseLeave={closeMegaDelayed}
             dir={isRTL ? 'rtl' : 'ltr'}
@@ -322,14 +324,14 @@ const NexaHeader: React.FC = () => {
                 
                 {/* Col 1 */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] dark:text-white/40 text-gray-400 font-semibold mb-4">
                     {t("nexa.ui.by_industry")}
                   </h4>
                   {solutionLinks.slice(0, 5).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        className="flex items-center gap-3 py-2.5 dark:text-white/70 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors group">
                         <Icon className="w-4 h-4 text-[#00C47A] opacity-60 group-hover:opacity-100" />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
@@ -339,12 +341,12 @@ const NexaHeader: React.FC = () => {
 
                 {/* Col 2 */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">&nbsp;</h4>
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] dark:text-white/40 text-gray-400 font-semibold mb-4">&nbsp;</h4>
                   {solutionLinks.slice(5, 10).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        className="flex items-center gap-3 py-2.5 dark:text-white/70 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors group">
                         <Icon className="w-4 h-4 text-[#00C47A] opacity-60 group-hover:opacity-100" />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
@@ -354,12 +356,12 @@ const NexaHeader: React.FC = () => {
 
                 {/* Col 3 */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">&nbsp;</h4>
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] dark:text-white/40 text-gray-400 font-semibold mb-4">&nbsp;</h4>
                   {solutionLinks.slice(10, 15).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        className="flex items-center gap-3 py-2.5 dark:text-white/70 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors group">
                         <Icon className="w-4 h-4 text-[#00C47A] opacity-60 group-hover:opacity-100" />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
@@ -368,30 +370,30 @@ const NexaHeader: React.FC = () => {
                 </div>
 
                 {/* Col 4: Highlight / Resources */}
-                <div className="bg-white/5 rounded-2xl p-6 border border-white/10 flex flex-col">
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-6">
+                <div className="dark:bg-white/5 bg-gray-100/60 rounded-2xl p-6 border dark:border-white/10 border-gray-200/60 flex flex-col">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] dark:text-white/40 text-gray-400 font-semibold mb-6">
                     {t("nexa.ui.enterprise_resources")}
                   </h4>
                   
                   <div className="flex-1 space-y-4">
                     <a href="/solutions/" onClick={() => setMegaMenu(null)} 
-                       className="group flex flex-col p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors">
+                       className="group flex flex-col p-4 rounded-xl dark:hover:bg-white/5 hover:bg-gray-200/50 border border-transparent dark:hover:border-white/10 hover:border-gray-200 transition-colors">
                       <span className="text-[#00C47A] font-semibold text-[15px] mb-1 flex items-center gap-2">
                         {t("nexa.ui.all_solutions")}
                         <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                       </span>
-                      <span className="text-white/50 text-xs leading-relaxed">
+                      <span className="dark:text-white/50 text-gray-500 text-xs leading-relaxed">
                         {t("nexa.ui.browse_the_complete_catalog_of")}
                       </span>
                     </a>
 
                     <a href="/for-business" onClick={() => setMegaMenu(null)} 
-                       className="group flex flex-col p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors">
-                      <span className="text-white font-semibold text-[15px] mb-1 flex items-center gap-2">
+                       className="group flex flex-col p-4 rounded-xl dark:hover:bg-white/5 hover:bg-gray-200/50 border border-transparent dark:hover:border-white/10 hover:border-gray-200 transition-colors">
+                      <span className="dark:text-white text-gray-900 font-semibold text-[15px] mb-1 flex items-center gap-2">
                         {t("nexa.ui.for_enterprises")}
                         <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                       </span>
-                      <span className="text-white/50 text-xs leading-relaxed">
+                      <span className="dark:text-white/50 text-gray-500 text-xs leading-relaxed">
                         {t("nexa.ui.custom_enterprise_solutions_th")}
                       </span>
                     </a>
