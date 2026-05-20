@@ -1,0 +1,11 @@
+---
+import NexaLiveLayout from "../layouts/NexaLiveLayout.astro";
+import { NexaPrivacyPage } from "../components/react/nexalive/pages/NexaLegalPages";
+
+const title = "Privacy Policy | NexaLive";
+const description = "NexaLive Privacy Policy — how we collect, use, and protect your data. End-to-end encryption, zero-knowledge architecture, and GDPR compliance.";
+---
+
+<NexaLiveLayout title={title} description={description}>
+  <NexaPrivacyPage client:load />
+</NexaLiveLayout>

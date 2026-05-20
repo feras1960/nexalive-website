@@ -200,3 +200,72 @@ function CookiePolicyContent() {
 export function NexaCookiePolicyPage() {
   return <NexaLiveLanguageProvider><CookiePolicyContent /></NexaLiveLanguageProvider>;
 }
+
+// ═══════════════════════════════════════════════════════════════
+// Privacy Policy Page
+// ═══════════════════════════════════════════════════════════════
+function PrivacyContent() {
+  const { t } = useNexaLanguage();
+  return (
+    <LegalPageShell icon={Shield} color="#3B82F6" titleKey="nexa.legal.privacy.title" lastUpdated="2026-05-20">
+      <h2>{t("nexa.legal.privacy.s1.title")}</h2>
+      <p>{t("nexa.legal.privacy.s1.p1")}</p>
+      <p>{t("nexa.legal.privacy.s1.p2")}</p>
+
+      <h2>{t("nexa.legal.privacy.s2.title")}</h2>
+      <p>{t("nexa.legal.privacy.s2.p1")}</p>
+      <ul>
+        <li>{t("nexa.legal.privacy.s2.li1")}</li>
+        <li>{t("nexa.legal.privacy.s2.li2")}</li>
+        <li>{t("nexa.legal.privacy.s2.li3")}</li>
+        <li>{t("nexa.legal.privacy.s2.li4")}</li>
+      </ul>
+
+      <h2>{t("nexa.legal.privacy.s3.title")}</h2>
+      <p>{t("nexa.legal.privacy.s3.p1")}</p>
+      <ul>
+        <li>{t("nexa.legal.privacy.s3.li1")}</li>
+        <li>{t("nexa.legal.privacy.s3.li2")}</li>
+        <li>{t("nexa.legal.privacy.s3.li3")}</li>
+      </ul>
+
+      <h2>{t("nexa.legal.privacy.s4.title")}</h2>
+      <p>{t("nexa.legal.privacy.s4.p1")}</p>
+
+      <div className="my-8 p-6 rounded-2xl bg-blue-500/5 border border-blue-500/20">
+        <h3 className="flex items-center gap-3 !text-blue-400 !mt-0">
+          <Shield className="w-5 h-5" />
+          {t("nexa.legal.privacy.s5.title")}
+        </h3>
+        <p>{t("nexa.legal.privacy.s5.p1")}</p>
+        <ul>
+          <li>{t("nexa.legal.privacy.s5.li1")}</li>
+          <li>{t("nexa.legal.privacy.s5.li2")}</li>
+          <li>{t("nexa.legal.privacy.s5.li3")}</li>
+        </ul>
+      </div>
+
+      <h2>{t("nexa.legal.privacy.s6.title")}</h2>
+      <p>{t("nexa.legal.privacy.s6.p1")}</p>
+
+      <h2>{t("nexa.legal.privacy.s7.title")}</h2>
+      <p>{t("nexa.legal.privacy.s7.p1")}</p>
+      <ul>
+        <li>{t("nexa.legal.privacy.s7.li1")}</li>
+        <li>{t("nexa.legal.privacy.s7.li2")}</li>
+        <li>{t("nexa.legal.privacy.s7.li3")}</li>
+        <li>{t("nexa.legal.privacy.s7.li4")}</li>
+      </ul>
+
+      <h2>{t("nexa.legal.privacy.s8.title")}</h2>
+      <p>{t("nexa.legal.privacy.s8.p1")}</p>
+
+      <h2>{t("nexa.legal.privacy.s9.title")}</h2>
+      <p>{t("nexa.legal.privacy.s9.p1")}</p>
+    </LegalPageShell>
+  );
+}
+
+export function NexaPrivacyPage() {
+  return <NexaLiveLanguageProvider><PrivacyContent /></NexaLiveLanguageProvider>;
+}
