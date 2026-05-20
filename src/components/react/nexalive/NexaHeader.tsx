@@ -236,14 +236,14 @@ const NexaHeader: React.FC = () => {
               <div className="grid grid-cols-4 gap-8">
                 {/* Col 1: Core Communication */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)] font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
                     {t("nexa.ui.core_communication")}
                   </h4>
                   {featureLinks.slice(0, 4).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href + link.key} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group">
+                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
                         <Icon className={`w-4 h-4 ${link.color} opacity-70 group-hover:opacity-100`} />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
@@ -252,14 +252,14 @@ const NexaHeader: React.FC = () => {
                 </div>
                 {/* Col 2: Advanced */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)] font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
                     {t("nexa.ui.advanced_features")}
                   </h4>
                   {featureLinks.slice(4).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href + link.key} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group">
+                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
                         <Icon className={`w-4 h-4 ${link.color} opacity-70 group-hover:opacity-100`} />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
@@ -268,22 +268,22 @@ const NexaHeader: React.FC = () => {
                 </div>
                 {/* Col 3: Platform */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)] font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
                     {t("nexa.ui.platform")}
                   </h4>
-                  <a href="/features" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-[var(--accent-primary)] hover:text-[var(--text-primary)] font-medium transition-colors">
+                  <a href="/features" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-[#00C47A] hover:text-white font-medium transition-colors">
                     {t("nexa.ui.browse_all_features")} &rarr;
                   </a>
-                  <a href="/#download" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+                  <a href="/#download" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-white/60 hover:text-white transition-colors">
                     {t("nexa.ui.download_app")}
                   </a>
-                  <a href="/for-business" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+                  <a href="/for-business" onClick={() => setMegaMenu(null)} className="block py-2.5 text-[14px] text-white/60 hover:text-white transition-colors">
                     {t("nexa.ui.for_business")}
                   </a>
                 </div>
                 {/* Col 4: Highlight */}
-                <div className="bg-[var(--bg-secondary)] rounded-2xl p-6 border border-[var(--border-light)]">
-                  <div className="text-[var(--accent-primary)] text-xs font-semibold uppercase tracking-wider mb-2">
+                <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <div className="text-[#00C47A] text-xs font-semibold uppercase tracking-wider mb-2">
                     {t("nexa.ui.new")}
                   </div>
                   <h4 className="text-white font-bold text-lg mb-2">
@@ -293,7 +293,7 @@ const NexaHeader: React.FC = () => {
                     {t("nexa.ui.communication_without_internet")}
                   </p>
                   <a href="/features/mesh" onClick={() => setMegaMenu(null)}
-                    className="inline-flex items-center gap-1.5 text-[var(--accent-primary)] text-sm font-medium hover:underline">
+                    className="inline-flex items-center gap-1.5 text-[#00C47A] text-sm font-medium hover:underline">
                     {t("nexa.ui.learn_more_1")}
                     <ArrowRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-180" : ""}`} />
                   </a>
@@ -322,15 +322,15 @@ const NexaHeader: React.FC = () => {
                 
                 {/* Col 1 */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)] font-semibold mb-4">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">
                     {t("nexa.ui.by_industry")}
                   </h4>
                   {solutionLinks.slice(0, 5).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group">
-                        <Icon className="w-4 h-4 text-[var(--accent-primary)] opacity-60 group-hover:opacity-100" />
+                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        <Icon className="w-4 h-4 text-[#00C47A] opacity-60 group-hover:opacity-100" />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
                     );
@@ -339,13 +339,13 @@ const NexaHeader: React.FC = () => {
 
                 {/* Col 2 */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)] font-semibold mb-4">&nbsp;</h4>
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">&nbsp;</h4>
                   {solutionLinks.slice(5, 10).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group">
-                        <Icon className="w-4 h-4 text-[var(--accent-primary)] opacity-60 group-hover:opacity-100" />
+                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        <Icon className="w-4 h-4 text-[#00C47A] opacity-60 group-hover:opacity-100" />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
                     );
@@ -354,13 +354,13 @@ const NexaHeader: React.FC = () => {
 
                 {/* Col 3 */}
                 <div>
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)] font-semibold mb-4">&nbsp;</h4>
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-4">&nbsp;</h4>
                   {solutionLinks.slice(10, 15).map((link) => {
                     const Icon = link.icon;
                     return (
                       <a key={link.href} href={link.href} onClick={() => setMegaMenu(null)}
-                        className="flex items-center gap-3 py-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group">
-                        <Icon className="w-4 h-4 text-[var(--accent-primary)] opacity-60 group-hover:opacity-100" />
+                        className="flex items-center gap-3 py-2.5 text-white/60 hover:text-white transition-colors group">
+                        <Icon className="w-4 h-4 text-[#00C47A] opacity-60 group-hover:opacity-100" />
                         <span className="text-[14px]">{t(link.key)}</span>
                       </a>
                     );
@@ -368,15 +368,15 @@ const NexaHeader: React.FC = () => {
                 </div>
 
                 {/* Col 4: Highlight / Resources */}
-                <div className="bg-[var(--bg-secondary)] rounded-2xl p-6 border border-[var(--border-light)] flex flex-col">
-                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-[var(--text-muted)] font-semibold mb-6">
+                <div className="bg-white/5 rounded-2xl p-6 border border-white/10 flex flex-col">
+                  <h4 className="text-[13px] uppercase tracking-[0.08em] text-white/40 font-semibold mb-6">
                     {t("nexa.ui.enterprise_resources")}
                   </h4>
                   
                   <div className="flex-1 space-y-4">
                     <a href="/solutions/" onClick={() => setMegaMenu(null)} 
-                       className="group flex flex-col p-4 rounded-xl hover:bg-[var(--bg-secondary)] border border-transparent hover:border-[var(--border-light)] transition-colors">
-                      <span className="text-[var(--accent-primary)] font-semibold text-[15px] mb-1 flex items-center gap-2">
+                       className="group flex flex-col p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors">
+                      <span className="text-[#00C47A] font-semibold text-[15px] mb-1 flex items-center gap-2">
                         {t("nexa.ui.all_solutions")}
                         <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                       </span>
@@ -386,7 +386,7 @@ const NexaHeader: React.FC = () => {
                     </a>
 
                     <a href="/for-business" onClick={() => setMegaMenu(null)} 
-                       className="group flex flex-col p-4 rounded-xl hover:bg-[var(--bg-secondary)] border border-transparent hover:border-[var(--border-light)] transition-colors">
+                       className="group flex flex-col p-4 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-colors">
                       <span className="text-white font-semibold text-[15px] mb-1 flex items-center gap-2">
                         {t("nexa.ui.for_enterprises")}
                         <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${isRTL ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
