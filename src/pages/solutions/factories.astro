@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaFactoriesPage from "../../components/react/nexalive/pages/solutions/NexaFactoriesPage";
+---
+
+<NexaLiveLayout
+  title="حلول التصنيع | NexaLive"
+  description="نظام اتصالات متكامل لخطوط الإنتاج والمصانع — PTT، فيديو مباشر، طوارئ SOS، وشبكة Mesh."
+  keywords="manufacturing communication, PTT factory, industrial communication, NexaLive"
+>
+  <NexaFactoriesPage client:only="react" />
+</NexaLiveLayout>

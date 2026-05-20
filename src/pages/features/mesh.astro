@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaMeshPage from "../../components/react/nexalive/pages/NexaMeshPage";
+---
+
+<NexaLiveLayout
+  title="NexaMesh — Offline Communication Network | NexaLive"
+  description="Bluetooth mesh network for communication without internet. P2P relay, multi-hop, works underground and in remote areas."
+  keywords="mesh network, offline communication, Bluetooth mesh, P2P, no internet, emergency communication"
+>
+  <NexaMeshPage client:only="react" />
+</NexaLiveLayout>

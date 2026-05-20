@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaPTTPage from "../../components/react/nexalive/pages/NexaPTTPage";
+---
+
+<NexaLiveLayout
+  title="NexaPTT — Push-to-Talk Walkie-Talkie | NexaLive"
+  description="Instant push-to-talk with HD audio, video PTT, offline Bluetooth mesh, and priority speaker. Free for individuals."
+  keywords="push-to-talk, PTT, walkie talkie app, HD audio, mesh network, offline communication"
+>
+  <NexaPTTPage client:only="react" />
+</NexaLiveLayout>

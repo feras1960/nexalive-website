@@ -1,0 +1,11 @@
+---
+import NexaLiveLayout from "../layouts/NexaLiveLayout.astro";
+import NexaAboutPage from "../components/react/nexalive/pages/NexaAboutPage";
+
+const title = "About TexaCore Solutions | NexaLive Enterprise Communication";
+const description = "Learn about TexaCore Solutions — the company behind NexaLive. Our mission, vision, global reach, and the technology powering enterprise communications worldwide.";
+---
+
+<NexaLiveLayout title={title} description={description}>
+  <NexaAboutPage client:load />
+</NexaLiveLayout>

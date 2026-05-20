@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaMessagingPage from "../../components/react/nexalive/pages/NexaMessagingPage";
+---
+
+<NexaLiveLayout
+  title="NexaChat — Encrypted Messaging | NexaLive"
+  description="End-to-end encrypted messaging with file sharing, disappearing messages, and cross-platform sync."
+  keywords="encrypted messaging, E2E encryption, secure chat, private messaging, file sharing"
+>
+  <NexaMessagingPage client:only="react" />
+</NexaLiveLayout>

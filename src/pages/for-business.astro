@@ -1,0 +1,11 @@
+---
+import NexaLiveLayout from "../layouts/NexaLiveLayout.astro";
+import NexaBusinessPage from "../components/react/nexalive/pages/NexaBusinessPage";
+
+const title = "NexaLive For Business | Enterprise Communication";
+const description = "Upgrade to NexaLive Business for ERP integration, AI analytics, Dispatcher Console, and SIP Gateway integration.";
+---
+
+<NexaLiveLayout title={title} description={description}>
+  <NexaBusinessPage client:load />
+</NexaLiveLayout>

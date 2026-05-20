@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- TexaCore Shield -->
+  <defs>
+    <linearGradient id="shield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2D6A4F"/>
+      <stop offset="100%" style="stop-color:#40916C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E76F51"/>
+      <stop offset="100%" style="stop-color:#F4A261"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape -->
+  <path d="M64 8L20 28v32c0 28 18.7 54.2 44 60 25.3-5.8 44-32 44-60V28L64 8z" fill="url(#shield)"/>
+  <!-- Inner shield highlight -->
+  <path d="M64 16L28 33v25c0 23.5 15.3 45.5 36 50.4 20.7-4.9 36-26.9 36-50.4V33L64 16z" fill="url(#shield)" opacity="0.8"/>
+  <!-- T letter -->
+  <text x="64" y="82" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="56" fill="white" text-anchor="middle">T</text>
+  <!-- Accent dot -->
+  <circle cx="88" cy="38" r="6" fill="url(#accent)"/>
+</svg>

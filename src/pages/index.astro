@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../layouts/NexaLiveLayout.astro";
+import NexaLiveHome from "../components/react/nexalive/NexaLiveHome";
+import { LanguageProvider } from "../components/react/LanguageContext";
+---
+
+<NexaLiveLayout
+  title="NexaLive — Free Push-to-Talk, Video PTT, & Team Communication Platform"
+  description="The ultimate team communication platform. Walkie-talkie, video streaming, SOS, and AI analytics in one secure app."
+>
+  <NexaLiveHome client:only="react" />
+</NexaLiveLayout>

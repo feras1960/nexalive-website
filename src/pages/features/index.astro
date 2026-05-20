@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaFeaturesPage from "../../components/react/nexalive/pages/NexaFeaturesPage";
+---
+
+<NexaLiveLayout 
+  title="NexaLive - Features"
+  description="Explore the complete catalog of NexaLive features including cloud PBX, PTT, messaging, and AI."
+  keywords="features, cloud PBX, PTT, team communication, encrypted messaging, NexaMesh"
+>
+  <NexaFeaturesPage client:only="react" />
+</NexaLiveLayout>

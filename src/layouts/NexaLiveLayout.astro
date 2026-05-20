@@ -1,0 +1,271 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  lang?: string;
+  dir?: string;
+  keywords?: string;
+}
+
+const {
+  title,
+  description = "NexaLive - Enterprise Communication Platform | Cloud PBX, Push-to-Talk, Encrypted Messaging",
+  ogImage = "/images/og-nexalive.png",
+  lang = "en",
+  dir = "ltr",
+  keywords = "cloud PBX, push-to-talk, PTT, walkie talkie, video PTT, encrypted messaging, VoIP, team communication, lone worker, SOS, mesh network",
+} = Astro.props;
+
+const canonical = Astro.url.href;
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "NexaLive",
+  applicationCategory: "CommunicationApplication",
+  operatingSystem: "Web, iOS, Android, Windows, Mac",
+  description: description,
+  url: "https://nexalive.ai",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  author: {
+    "@type": "Organization",
+    name: "TexaCore Solutions",
+    url: "https://texacore.com",
+  },
+  featureList: [
+    "Cloud PBX with IVR & Call Routing",
+    "Push-to-Talk (PTT) with HD Audio",
+    "Video PTT - World's First",
+    "End-to-End Encrypted Messaging",
+    "SOS & GPS Emergency System",
+    "Lone Worker Protection",
+    "NexaMesh Offline Network",
+    "AI Call Analytics (NexaBrain)",
+    "Works where VoIP is blocked",
+  ],
+};
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "NexaLive",
+  url: "https://nexalive.ai",
+  logo: "https://nexalive.ai/images/nexalive-logo.png",
+  sameAs: [],
+};
+---
+
+<!DOCTYPE html>
+<html lang={lang} dir={dir} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- ============ ANTI-FOUC THEME SCRIPT ============ -->
+    <script is:inline>
+      (function() {
+        try {
+          var theme = localStorage.getItem('nexa-theme') || 'system';
+          var resolved = theme;
+          if (theme === 'system') {
+            resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          var cl = document.documentElement.classList;
+          if (resolved === 'dark') { cl.add('dark'); cl.remove('light'); }
+          else { cl.add('light'); cl.remove('dark'); }
+          document.documentElement.setAttribute('data-theme', resolved);
+        } catch(e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- ============ PRIMARY SEO ============ -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- ============ OPEN GRAPH ============ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="NexaLive" />
+    <meta property="og:locale" content={lang === 'ar' ? 'ar_SA' : 'en_US'} />
+
+    <!-- ============ TWITTER CARD ============ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- ============ ROBOTS ============ -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ FAVICON ============ -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- ============ SCHEMA.ORG ============ -->
+    <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
+
+    <!-- ============ NEXA STYLES ============ -->
+    <style is:global>
+      /* ═══ Ajax-Inspired Design System ═══ */
+      :root {
+        /* Backgrounds */
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F5F5F7;
+        --bg-card: #FAFAFA;
+        --bg-card-hover: #F0F0F2;
+        --bg-dark-section: #0A0A0A;
+        --bg-feature-card: #EFEFEF;
+        /* Typography */
+        --text-primary: #0A0A0A;
+        --text-secondary: #6E6E73;
+        --text-muted: #A1A1A6;
+        --text-on-dark: #FFFFFF;
+        /* Brand */
+        --accent-primary: #00C47A;
+        --accent-primary-hover: #00A866;
+        --accent-secondary: #00E5FF;
+        --accent-glow: rgba(0,196,122,0.15);
+        /* Borders */
+        --border-light: rgba(0,0,0,0.08);
+        --border-medium: rgba(0,0,0,0.12);
+        --border-card: rgba(0,0,0,0.06);
+        /* Gradients */
+        --gradient-hero: linear-gradient(135deg, #F8FFF9 0%, #E8F5FF 50%, #F0FFF8 100%);
+        --gradient-cta: linear-gradient(135deg, #00C47A, #00A0C8);
+        --gradient-dark: linear-gradient(180deg, #0A0A0A 0%, #111827 100%);
+        --gradient-card: linear-gradient(145deg, #FFFFFF, #F5F5F7);
+      }
+      html.dark {
+        --bg-primary: #0a0a0f;
+        --bg-secondary: #12121a;
+        --bg-card: #1a1a2e;
+        --bg-card-hover: #22223a;
+        --bg-dark-section: #0A0A0A;
+        --text-primary: #FFFFFF;
+        --text-secondary: #888899;
+        --text-muted: #555566;
+        --text-on-dark: #FFFFFF;
+        --border-light: rgba(255,255,255,0.08);
+        --border-medium: rgba(255,255,255,0.12);
+        --border-card: rgba(255,255,255,0.06);
+        --gradient-hero: linear-gradient(135deg, #0a0a0f 0%, #0f1520 50%, #0a0f12 100%);
+        --gradient-card: linear-gradient(145deg, #1a1a2e, #12121a);
+      }
+      /* Light mode body */
+      html.light body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+      /* Dark mode body */
+      html.dark body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+      /* Smooth theme transition */
+      html body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      /* Premium typography */
+      html[dir='rtl'] body {
+        font-family: 'IBM Plex Sans Arabic', 'Noto Sans Arabic', 'Inter', system-ui, sans-serif;
+      }
+      html:not([dir='rtl']) body {
+        font-family: 'Inter', 'SF Pro Display', -apple-system, system-ui, sans-serif;
+      }
+      /* Scroll progress bar */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: var(--accent-primary);
+        z-index: 9999;
+        transition: width 0.1s;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen antialiased overflow-x-hidden">
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="scroll-progress" style="width: 0%"></div>
+    
+    <slot />
+
+    <!-- Scroll Progress Script -->
+    <script is:inline>
+      window.addEventListener('scroll', function() {
+        var h = document.documentElement;
+        var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        var bar = document.getElementById('scroll-progress');
+        if (bar) bar.style.width = Math.min(pct, 100) + '%';
+      }, { passive: true });
+    </script>
+    <!-- NexaLive WebRTC Click-to-Call Widget (Multi-Language) -->
+    <script is:inline define:vars={{ supabaseUrl: "https://wzkklenfsaepegymfxfz.supabase.co", supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6a2tsZW5mc2FlcGVneW1meGZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3NTIxNzcsImV4cCI6MjA4NDMyODE3N30.ATYSK_WvOfbqEaInbg5nKau-wgixF0lIGaue3m8AJtI" }}>
+      // Detect NexaLive page language
+      (function() {
+        function getNexaLang() {
+          try { var s = localStorage.getItem('texacore-language'); if (s) return s; } catch(e) {}
+          var h = document.documentElement.lang || 'en';
+          return h.split('-')[0] || 'en';
+        }
+        var lang = getNexaLang();
+
+        var texts = {
+          ar: { btn: "اتصل بنا مجاناً", calling: "جارٍ الاتصال...", micReq: "طلب صلاحية الميكروفون...", micDeny: "تم رفض صلاحية الميكروفون", dialing: "جارٍ الطلب...", ringing: "يرن...", maxTime: "انتهت المدة القصوى", failed: "فشل الاتصال", busy: "جميع الخطوط مشغولة", offline: "الموظف غير متصل حالياً", ended: "انتهت المكالمة", incoming: "مكالمة واردة من خدمة العملاء...", cbTitle: "📞 هل تريد أن نعاود الاتصال بك؟", cbDesc: "جميع موظفينا مشغولون حالياً.<br>أدخل رقمك وسنتواصل معك خلال أوقات الدوام.", cbSend: "أرسل طلب الاتصال", cbSkip: "لا شكراً، إغلاق", cbSending: "جارٍ الإرسال...", cbOk: "✅ تم استلام طلبك! سنتواصل معك قريباً.", cbBadNum: "الرجاء إدخال رقم صحيح", cbAutoClose: "تغلق تلقائياً بعد", sec: "ثانية", waitMsg: "الرجاء الانتظار", encrypted: "مكالمة مشفرة عبر WebRTC" },
+          en: { btn: "Call Us Free", calling: "Connecting...", micReq: "Requesting microphone access...", micDeny: "Microphone permission denied", dialing: "Dialing...", ringing: "Ringing...", maxTime: "Maximum call time reached", failed: "Call failed", busy: "All lines are busy", offline: "Agent is currently offline", ended: "Call ended", incoming: "Incoming call from support...", cbTitle: "📞 Want us to call you back?", cbDesc: "All agents are currently busy.<br>Enter your number and we'll call you back during business hours.", cbSend: "Request Callback", cbSkip: "No thanks, close", cbSending: "Sending...", cbOk: "✅ Request received! We'll contact you soon.", cbBadNum: "Please enter a valid number", cbAutoClose: "Auto-closing in", sec: "seconds", waitMsg: "Please wait", encrypted: "Encrypted call via WebRTC" },
+          de: { btn: "Kostenlos anrufen", calling: "Verbindung wird hergestellt...", micReq: "Mikrofonzugriff anfordern...", micDeny: "Mikrofonzugriff verweigert", dialing: "Wählen...", ringing: "Klingelt...", maxTime: "Maximale Anrufdauer erreicht", failed: "Anruf fehlgeschlagen", busy: "Alle Leitungen belegt", offline: "Mitarbeiter derzeit nicht erreichbar", ended: "Anruf beendet", incoming: "Eingehender Anruf vom Support...", cbTitle: "📞 Rückruf gewünscht?", cbDesc: "Alle Mitarbeiter sind derzeit beschäftigt.<br>Geben Sie Ihre Nummer ein, wir rufen Sie zurück.", cbSend: "Rückruf anfordern", cbSkip: "Nein danke, schließen", cbSending: "Wird gesendet...", cbOk: "✅ Anfrage erhalten! Wir melden uns bald.", cbBadNum: "Bitte gültige Nummer eingeben", cbAutoClose: "Schließt automatisch in", sec: "Sekunden", waitMsg: "Bitte warten", encrypted: "Verschlüsselter Anruf über WebRTC" },
+          fr: { btn: "Appelez-nous gratuitement", calling: "Connexion en cours...", micReq: "Demande d'accès au microphone...", micDeny: "Accès au microphone refusé", dialing: "Numérotation...", ringing: "Sonnerie...", maxTime: "Durée maximale atteinte", failed: "Appel échoué", busy: "Toutes les lignes sont occupées", offline: "Agent actuellement hors ligne", ended: "Appel terminé", incoming: "Appel entrant du support...", cbTitle: "📞 Souhaitez-vous être rappelé ?", cbDesc: "Tous nos agents sont occupés.<br>Entrez votre numéro, nous vous rappellerons.", cbSend: "Demander un rappel", cbSkip: "Non merci, fermer", cbSending: "Envoi en cours...", cbOk: "✅ Demande reçue ! Nous vous contacterons bientôt.", cbBadNum: "Veuillez entrer un numéro valide", cbAutoClose: "Fermeture auto dans", sec: "secondes", waitMsg: "Veuillez patienter", encrypted: "Appel chiffré via WebRTC" },
+          ru: { btn: "Позвоните бесплатно", calling: "Подключение...", micReq: "Запрос доступа к микрофону...", micDeny: "Доступ к микрофону отклонён", dialing: "Набор номера...", ringing: "Звонит...", maxTime: "Максимальное время вызова", failed: "Звонок не удался", busy: "Все линии заняты", offline: "Оператор сейчас не в сети", ended: "Звонок завершён", incoming: "Входящий звонок от поддержки...", cbTitle: "📞 Хотите, чтобы мы перезвонили?", cbDesc: "Все операторы заняты.<br>Введите номер — мы перезвоним.", cbSend: "Запросить обратный звонок", cbSkip: "Нет, закрыть", cbSending: "Отправка...", cbOk: "✅ Запрос получен! Мы свяжемся с вами.", cbBadNum: "Введите корректный номер", cbAutoClose: "Автозакрытие через", sec: "сек.", waitMsg: "Пожалуйста, подождите", encrypted: "Зашифрованный звонок через WebRTC" },
+          tr: { btn: "Bizi Ücretsiz Arayın", calling: "Bağlanıyor...", micReq: "Mikrofon izni isteniyor...", micDeny: "Mikrofon izni reddedildi", dialing: "Aranıyor...", ringing: "Çalıyor...", maxTime: "Maksimum arama süresi doldu", failed: "Arama başarısız", busy: "Tüm hatlar meşgul", offline: "Temsilci şu anda çevrimdışı", ended: "Arama sonlandı", incoming: "Destek ekibinden gelen arama...", cbTitle: "📞 Sizi geri aramamızı ister misiniz?", cbDesc: "Tüm temsilcilerimiz şu anda meşgul.<br>Numaranızı girin, sizi geri arayalım.", cbSend: "Geri arama iste", cbSkip: "Hayır, kapat", cbSending: "Gönderiliyor...", cbOk: "✅ Talebiniz alındı! Yakında iletişime geçeceğiz.", cbBadNum: "Lütfen geçerli bir numara girin", cbAutoClose: "Otomatik kapanma:", sec: "saniye", waitMsg: "Lütfen bekleyin", encrypted: "WebRTC ile şifreli arama" },
+          uk: { btn: "Зателефонуйте безкоштовно", calling: "З'єднання...", micReq: "Запит доступу до мікрофона...", micDeny: "Доступ до мікрофона відхилено", dialing: "Набір номера...", ringing: "Дзвонить...", maxTime: "Максимальний час виклику", failed: "Виклик не вдався", busy: "Всі лінії зайняті", offline: "Оператор зараз не в мережі", ended: "Виклик завершено", incoming: "Вхідний дзвінок від підтримки...", cbTitle: "📞 Бажаєте, щоб ми передзвонили?", cbDesc: "Усі оператори зайняті.<br>Введіть номер — ми передзвонимо.", cbSend: "Запросити зворотний дзвінок", cbSkip: "Ні, закрити", cbSending: "Надсилання...", cbOk: "✅ Запит отримано! Ми зв'яжемося з вами.", cbBadNum: "Введіть коректний номер", cbAutoClose: "Автозакриття через", sec: "сек.", waitMsg: "Будь ласка, зачекайте", encrypted: "Зашифрований дзвінок через WebRTC" },
+        };
+
+        var t = texts[lang] || texts.en;
+
+        window.TexaCoreWebRTCConfig = {
+          themeColor: "#10b981",
+          buttonText: t.btn,
+          pbxDomain: "pbx.texacore.ai",
+          wssPort: "8089",
+          guestUsername: "webrtc_guest",
+          guestPassword: "TxC_W3bRTC_Gu3st_2026!",
+          targetDestination: "700",
+          companyName: "NexaLive",
+          cooldownSeconds: 0,
+          maxCallDuration: 120,
+          callbackApiUrl: "https://wzkklenfsaepegymfxfz.supabase.co/functions/v1/pbx-web-callback",
+          widgetId: "nexalive",
+          supabaseUrl: supabaseUrl,
+          supabaseKey: supabaseKey,
+          _t: t,
+          _lang: lang
+        };
+      })();
+    </script>
+    <script is:inline src="/widgets/webrtc-call.js?v=3.3" async defer></script>
+    <!-- End NexaLive WebRTC Click-to-Call Widget -->
+  </body>
+</html>

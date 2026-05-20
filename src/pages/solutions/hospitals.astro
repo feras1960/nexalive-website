@@ -1,0 +1,8 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaHospitalsPage from "../../components/react/nexalive/pages/solutions/NexaHospitalsPage";
+---
+
+<NexaLiveLayout title="حلول الرعاية الصحية | NexaLive" description="اتصالات مشفرة متوافقة مع HIPAA للمستشفيات." keywords="healthcare communication, HIPAA, hospital PTT, NexaLive">
+  <NexaHospitalsPage client:only="react" />
+</NexaLiveLayout>

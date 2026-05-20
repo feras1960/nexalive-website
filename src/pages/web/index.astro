@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaWebLoginPage from "../../components/react/nexalive/pages/NexaWebLoginPage";
+---
+
+<NexaLiveLayout 
+  title="NexaLive Web - تسجيل الدخول"
+  description="استخدم NexaLive على الكمبيوتر. امسح رمز QR من التطبيق للبدء. اتصال مشفر وآمن."
+  keywords="NexaLive Web, QR code login, encrypted communication, web client"
+>
+  <NexaWebLoginPage client:only="react" />
+</NexaLiveLayout>

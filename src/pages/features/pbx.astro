@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaPBXPage from "../../components/react/nexalive/pages/NexaPBXPage";
+---
+
+<NexaLiveLayout
+  title="NexaPBX — Cloud PBX System | NexaLive"
+  description="Enterprise cloud PBX with IVR, ring groups, call routing, SIP trunks, and WebRTC softphone. Works where VoIP is blocked."
+  keywords="cloud PBX, IVR, SIP trunk, call routing, VoIP, softphone, PBX system, virtual PBX"
+>
+  <NexaPBXPage client:only="react" />
+</NexaLiveLayout>

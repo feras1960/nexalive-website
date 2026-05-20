@@ -1,0 +1,12 @@
+---
+import NexaLiveLayout from "../../layouts/NexaLiveLayout.astro";
+import NexaSecurityPage from "../../components/react/nexalive/pages/NexaSecurityPage";
+---
+
+<NexaLiveLayout
+  title="NexaShield — Multi-Layer Security | NexaLive"
+  description="Military-grade AES-256 encryption, zero-knowledge architecture, and E2EE. Compare with Signal, WhatsApp, Telegram."
+  keywords="encryption, AES-256, E2E encryption, zero knowledge, secure communication, VPN bypass"
+>
+  <NexaSecurityPage client:only="react" />
+</NexaLiveLayout>
