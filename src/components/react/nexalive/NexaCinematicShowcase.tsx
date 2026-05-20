@@ -323,7 +323,7 @@ const NexaCinematicShowcase: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`w-full sm:w-[520px] lg:w-[620px] min-h-[380px] p-8 sm:p-10 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col justify-between ${isRTL ? "mr-0 ml-auto text-right" : ""}`}
+            className={`w-full sm:w-[520px] lg:w-[620px] min-h-[320px] sm:min-h-[380px] p-5 sm:p-8 lg:p-10 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col justify-between ${isRTL ? "mr-0 ml-auto text-right" : ""}`}
           >
             <div>
               {/* Badge */}
@@ -347,7 +347,7 @@ const NexaCinematicShowcase: React.FC = () => {
             </div>
 
             {/* Stats */}
-            <div className={`flex items-center gap-6 sm:gap-8 mb-6 flex-wrap ${isRTL ? "flex-row-reverse" : ""}`}>
+            <div className={`grid grid-cols-3 gap-3 sm:gap-6 mb-6 ${isRTL ? "text-right" : ""}`}>
               {slide.stats.map((stat, i) => (
                 <motion.div
                   key={i}

@@ -471,6 +471,7 @@ const NexaHeader: React.FC = () => {
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center lg:hidden"
+            onClick={(e) => { if (e.target === e.currentTarget) setIsLangMenuOpen(false); }}
           >
             <div className="w-full max-w-sm mx-4 p-6 bg-[var(--bg-primary)] rounded-2xl border border-[var(--border-medium)] shadow-2xl">
               <div className="flex justify-between items-center mb-4">
@@ -479,7 +480,7 @@ const NexaHeader: React.FC = () => {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 max-h-[50vh] overflow-y-auto">
                 {Object.entries(languageNames).map(([code, name]) => (
                   <button
                     key={code}
