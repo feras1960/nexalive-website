@@ -4,14 +4,18 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import path from 'path';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
     site: 'https://nexalive.ai',
     output: 'static',
+
     integrations: [
         react(),
         tailwind(),
         sitemap(),
     ],
+
     i18n: {
         defaultLocale: 'en',
         locales: ['en', 'ar', 'ru', 'de', 'fr', 'tr', 'uk', 'ro', 'pl', 'it', 'nl'],
@@ -19,6 +23,7 @@ export default defineConfig({
             prefixDefaultLocale: false,
         },
     },
+
     vite: {
         resolve: {
             alias: {
@@ -28,4 +33,6 @@ export default defineConfig({
             },
         },
     },
+
+    adapter: cloudflare()
 });
