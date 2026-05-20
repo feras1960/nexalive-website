@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Siren, MapPin, Activity, HardHat, ShieldAlert, 
   EyeOff, Map, FileWarning, Clock
@@ -8,39 +8,188 @@ import { NexaLiveLanguageProvider, useNexaLanguage } from "../NexaLiveLanguageCo
 import { NexaPageWrapper, PageHero, NexaSection, FeatureCard, NexaCTABanner } from "../NexaPageTemplate";
 import { useScrollFadeUp } from "../useAnimations";
 
-function VideoShowcaseCard({ videoSrc, titleKey, descKey, icon }: {
-  videoSrc: string; titleKey: string; descKey: string; icon: React.ReactNode;
-}) {
-  const { t } = useNexaLanguage();
+// ═══ SOS Cinematic Showcase — rotating videos with info ═══
+function SOSCinematicShowcase() {
+  const { t, isRTL } = useNexaLanguage();
+  const [active, setActive] = useState(0);
+
+  const slides = [
+    {
+      icon: Siren,
+      video: "/videos/features/sos-phone-ground.mp4",
+      titleKey: "nexa.sos.scenario.alert.title",
+      descKey: "nexa.sos.scenario.alert.desc",
+      color: "#EF4444",
+      gradient: "from-red-500/20 to-orange-500/10",
+      pills: ["SOS", "GPS", "Alert"],
+      label: "nexa.sos.scenario.alert.label",
+    },
+    {
+      icon: Activity,
+      video: "/videos/features/sos-pocket-grab.mp4",
+      titleKey: "nexa.sos.scenario.quick.title",
+      descKey: "nexa.sos.scenario.quick.desc",
+      color: "#F59E0B",
+      gradient: "from-amber-500/20 to-yellow-500/10",
+      pills: ["Quick", "Lock", "PTT"],
+      label: "nexa.sos.scenario.quick.label",
+    },
+    {
+      icon: ShieldAlert,
+      video: "/videos/features/sos-swipe-activate.mp4",
+      titleKey: "nexa.sos.scenario.activate.title",
+      descKey: "nexa.sos.scenario.activate.desc",
+      color: "#10B981",
+      gradient: "from-emerald-500/20 to-teal-500/10",
+      pills: ["Swipe", "Family", "E2E"],
+      label: "nexa.sos.scenario.activate.label",
+    },
+    {
+      icon: Map,
+      video: "/videos/features/sos-command-center.mp4",
+      titleKey: "nexa.sos.scenario.response.title",
+      descKey: "nexa.sos.scenario.response.desc",
+      color: "#3B82F6",
+      gradient: "from-blue-500/20 to-indigo-500/10",
+      pills: ["Dispatch", "Radar", "Live"],
+      label: "nexa.sos.scenario.response.label",
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => setActive((p) => (p + 1) % slides.length), 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const slide = slides[active];
+  const SlideIcon = slide.icon;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="group relative rounded-2xl overflow-hidden border dark:border-white/5 border-gray-100"
-    >
-      <div className="relative aspect-video overflow-hidden">
-        <video
-          src={videoSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center backdrop-blur-sm border border-red-500/30">
-              {icon}
+    <section className="py-20 dark:bg-nexa-deep-dark/50 bg-white/50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 mb-4">
+            {t("nexa.sos.scenarios.title")}
+          </h2>
+          <p className="text-lg dark:text-nexa-text-secondary text-nexa-light-text-secondary max-w-3xl mx-auto">
+            {t("nexa.sos.scenarios.subtitle")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[450px]">
+          
+          {/* Video side */}
+          <motion.div className={`relative ${isRTL ? "lg:order-2" : "lg:order-1"}`}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5 }}
+                className="relative aspect-video rounded-3xl overflow-hidden border dark:border-white/10 border-gray-200"
+              >
+                <video
+                  key={slide.video}
+                  src={slide.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                
+                {/* Progress bar */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
+                  <motion.div
+                    key={`progress-${active}`}
+                    className="h-full"
+                    style={{ background: slide.color }}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 6, ease: "linear" }}
+                  />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Text side */}
+          <div className={`${isRTL ? "lg:order-1" : "lg:order-2"}`}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4"
+                  style={{ background: `${slide.color}15`, border: `1px solid ${slide.color}30` }}
+                >
+                  <SlideIcon className="w-4 h-4" style={{ color: slide.color }} />
+                  <span className="text-xs font-semibold" style={{ color: slide.color }}>
+                    {active + 1}/{slides.length}
+                  </span>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-extrabold dark:text-white text-gray-900 mb-4">
+                  {t(slide.titleKey)}
+                </h3>
+                <p className="text-lg dark:text-nexa-text-secondary text-nexa-light-text-secondary leading-relaxed mb-6">
+                  {t(slide.descKey)}
+                </p>
+
+                {/* Feature pills */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {slide.pills.map((pill) => (
+                    <span
+                      key={pill}
+                      className="px-3 py-1 rounded-full text-xs font-mono font-bold"
+                      style={{
+                        background: `${slide.color}15`,
+                        color: slide.color,
+                        border: `1px solid ${slide.color}30`,
+                      }}
+                    >
+                      {pill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Slide selector buttons */}
+            <div className="flex items-center gap-3 flex-wrap">
+              {slides.map((s, i) => {
+                const SIcon = s.icon;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setActive(i)}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 border
+                      ${i === active
+                        ? 'dark:bg-white/10 bg-gray-100 border-white/20 scale-105'
+                        : 'dark:bg-white/5 bg-gray-50 border-transparent hover:border-white/10 opacity-50 hover:opacity-80'
+                      }`}
+                  >
+                    <SIcon className="w-4 h-4" style={{ color: s.color }} />
+                    <span className="text-xs font-medium dark:text-white/70 text-gray-600 hidden sm:inline">
+                      {i === 0 ? t("nexa.sos.scenario.alert.label") :
+                       i === 1 ? t("nexa.sos.scenario.quick.label") :
+                       i === 2 ? t("nexa.sos.scenario.activate.label") :
+                       t("nexa.sos.scenario.response.label")}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-            <h3 className="text-lg font-bold text-white">{t(titleKey)}</h3>
           </div>
-          <p className="text-white/70 text-sm leading-relaxed">{t(descKey)}</p>
         </div>
       </div>
-    </motion.div>
+    </section>
   );
 }
 
@@ -92,38 +241,11 @@ function NexaSOSContent() {
         titleKey="nexa.sos.title"
         subtitleKey="nexa.sos.subtitle"
         gradient="from-red-500/10 to-transparent"
-        videoSrc="/videos/features/sos-phone-ground.mp4"
+        videoSrc="/videos/features/sos-command-center.mp4"
       />
 
-      {/* Video Showcase: Emergency Scenarios */}
-      <NexaSection titleKey="nexa.sos.scenarios.title" subtitleKey="nexa.sos.scenarios.subtitle" id="scenarios">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <VideoShowcaseCard
-            videoSrc="/videos/features/sos-phone-ground.mp4"
-            titleKey="nexa.sos.scenario.alert.title"
-            descKey="nexa.sos.scenario.alert.desc"
-            icon={<Siren className="w-5 h-5 text-red-400" />}
-          />
-          <VideoShowcaseCard
-            videoSrc="/videos/features/sos-pocket-grab.mp4"
-            titleKey="nexa.sos.scenario.quick.title"
-            descKey="nexa.sos.scenario.quick.desc"
-            icon={<Activity className="w-5 h-5 text-red-400" />}
-          />
-          <VideoShowcaseCard
-            videoSrc="/videos/features/sos-swipe-activate.mp4"
-            titleKey="nexa.sos.scenario.activate.title"
-            descKey="nexa.sos.scenario.activate.desc"
-            icon={<ShieldAlert className="w-5 h-5 text-red-400" />}
-          />
-          <VideoShowcaseCard
-            videoSrc="/videos/features/sos-command-center.mp4"
-            titleKey="nexa.sos.scenario.response.title"
-            descKey="nexa.sos.scenario.response.desc"
-            icon={<Map className="w-5 h-5 text-red-400" />}
-          />
-        </div>
-      </NexaSection>
+      {/* Cinematic Showcase — rotating videos with info */}
+      <SOSCinematicShowcase />
 
       {/* Features Grid */}
       <NexaSection titleKey="nexa.sos.features.title" subtitleKey="nexa.sos.features.subtitle" id="features">
@@ -152,21 +274,13 @@ function NexaSOSContent() {
             icon={<Activity className="w-6 h-6 text-red-500" />}
             titleKey="nexa.sos.detail.mandown.title"
             descKey="nexa.sos.detail.mandown.desc"
-            points={[
-              "nexa.sos.detail.mandown.p1",
-              "nexa.sos.detail.mandown.p2",
-              "nexa.sos.detail.mandown.p3",
-            ]}
+            points={["nexa.sos.detail.mandown.p1", "nexa.sos.detail.mandown.p2", "nexa.sos.detail.mandown.p3"]}
           />
           <DetailedFeatureBlock
             icon={<Clock className="w-6 h-6 text-red-500" />}
             titleKey="nexa.sos.detail.checkin.title"
             descKey="nexa.sos.detail.checkin.desc"
-            points={[
-              "nexa.sos.detail.checkin.p1",
-              "nexa.sos.detail.checkin.p2",
-              "nexa.sos.detail.checkin.p3",
-            ]}
+            points={["nexa.sos.detail.checkin.p1", "nexa.sos.detail.checkin.p2", "nexa.sos.detail.checkin.p3"]}
           />
           <DetailedFeatureBlock
             icon={<HardHat className="w-6 h-6 text-red-500" />}
