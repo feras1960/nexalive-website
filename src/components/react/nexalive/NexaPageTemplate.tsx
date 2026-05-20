@@ -214,20 +214,39 @@ export function NexaCTABanner({ titleKey, descKey }: { titleKey: string; descKey
   return (
     <section className="py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={ref} className="relative p-10 md:p-16 rounded-3xl overflow-hidden
-          bg-gradient-to-r from-nexa-primary to-blue-500 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t(titleKey)}</h2>
-          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">{t(descKey)}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#download" className="px-8 py-4 rounded-2xl bg-white text-nexa-primary-dark font-bold text-lg
-              hover:bg-gray-100 transition-all flex items-center gap-2 justify-center">
-              {t("nexa.hero.cta.download")}
-              <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
-            </a>
-            <a href="/pricing" className="px-8 py-4 rounded-2xl border-2 border-white/40 text-white font-semibold text-lg
-              hover:bg-white/10 transition-all">
-              {t("nexa.hero.cta.pricing")}
-            </a>
+        <div ref={ref} className="relative p-10 md:p-16 rounded-3xl overflow-hidden text-center
+          dark:bg-white/[0.03] bg-white/60 backdrop-blur-2xl
+          border dark:border-white/[0.08] border-gray-200/60
+          shadow-[0_8px_60px_-12px_rgba(0,196,122,0.15)]">
+          {/* Ambient glow effects */}
+          <div className="absolute -top-20 -left-20 w-60 h-60 bg-nexa-primary/20 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-blue-500/15 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-40 bg-nexa-primary/10 rounded-full blur-[80px] pointer-events-none" />
+          
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" 
+            style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+          
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-4">{t(titleKey)}</h2>
+            <p className="dark:text-white/60 text-gray-600 text-lg mb-8 max-w-2xl mx-auto">{t(descKey)}</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#download" className="px-8 py-4 rounded-2xl font-bold text-lg
+                bg-gradient-to-r from-nexa-primary to-emerald-500 text-white
+                shadow-[0_4px_20px_-4px_rgba(0,196,122,0.5)]
+                hover:shadow-[0_8px_30px_-4px_rgba(0,196,122,0.6)] hover:-translate-y-0.5
+                transition-all duration-300 flex items-center gap-2 justify-center">
+                {t("nexa.hero.cta.download")}
+                <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
+              </a>
+              <a href="/pricing" className="px-8 py-4 rounded-2xl font-semibold text-lg
+                dark:bg-white/[0.06] bg-gray-100/80 backdrop-blur-sm
+                border dark:border-white/[0.1] border-gray-200
+                dark:text-white text-gray-800
+                dark:hover:bg-white/[0.1] hover:bg-gray-200/80 transition-all duration-300">
+                {t("nexa.hero.cta.pricing")}
+              </a>
+            </div>
           </div>
         </div>
       </div>
