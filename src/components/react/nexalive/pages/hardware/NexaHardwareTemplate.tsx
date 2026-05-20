@@ -8,34 +8,34 @@ import { ArrowRight, CheckCircle, type LucideIcon } from "lucide-react";
 interface DeviceModel {
   name: string;
   imageSrc: string;
-  description: string;
-  specs: { label: string; value: string }[];
+  descKey: string;
+  specs: { labelKey: string; value: string }[];
 }
 
 interface Feature {
   icon: LucideIcon;
-  title: string;
-  desc: string;
+  titleKey: string;
+  descKey: string;
 }
 
 interface HardwarePageProps {
-  badge: string;
-  title: string;
-  subtitle: string;
-  description: string;
+  badgeKey: string;
+  titleKey: string;
+  subtitleKey: string;
+  descriptionKey: string;
   gradient: string;
   heroIcon: LucideIcon;
   features: Feature[];
   models: DeviceModel[];
-  compatibility: string[];
+  compatibilityKeys: string[];
   videoSrc?: string;
 }
 
 export function HardwareDetailPage({
-  badge, title, subtitle, description, gradient,
-  heroIcon: HeroIcon, features, models, compatibility, videoSrc,
+  badgeKey, titleKey, subtitleKey, descriptionKey, gradient,
+  heroIcon: HeroIcon, features, models, compatibilityKeys, videoSrc,
 }: HardwarePageProps) {
-  const { isRTL } = useNexaLanguage();
+  const { t, isRTL } = useNexaLanguage();
 
   return (
     <NexaPageWrapper>
@@ -81,21 +81,21 @@ export function HardwareDetailPage({
                   videoSrc ? "bg-white/10 border-white/20" : "dark:bg-nexa-primary/10 bg-nexa-primary/5 dark:border-nexa-primary/30 border-nexa-primary/20"
                 } border mb-6`}>
                   <span className="w-2 h-2 rounded-full bg-nexa-primary animate-pulse" />
-                  <span className={`text-sm font-semibold ${videoSrc ? "text-[var(--accent-primary)]" : "dark:text-nexa-primary text-nexa-primary-dark"}`}>{badge}</span>
+                  <span className={`text-sm font-semibold ${videoSrc ? "text-[var(--accent-primary)]" : "dark:text-nexa-primary text-nexa-primary-dark"}`}>{t(badgeKey)}</span>
                 </div>
-                <h1 className={`text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 ${videoSrc ? "text-white" : "dark:text-white text-gray-900"}`}>{title}</h1>
-                <p className={`text-lg md:text-xl max-w-xl mb-4 ${videoSrc ? "text-white/85" : "dark:text-nexa-text-secondary text-nexa-light-text-secondary"}`}>{subtitle}</p>
-                <p className={`text-base max-w-xl mb-8 ${videoSrc ? "text-white/60" : "dark:text-nexa-text-muted text-nexa-light-text-muted"}`}>{description}</p>
+                <h1 className={`text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 ${videoSrc ? "text-white" : "dark:text-white text-gray-900"}`}>{t(titleKey)}</h1>
+                <p className={`text-lg md:text-xl max-w-xl mb-4 ${videoSrc ? "text-white/85" : "dark:text-nexa-text-secondary text-nexa-light-text-secondary"}`}>{t(subtitleKey)}</p>
+                <p className={`text-base max-w-xl mb-8 ${videoSrc ? "text-white/60" : "dark:text-nexa-text-muted text-nexa-light-text-muted"}`}>{t(descriptionKey)}</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <a href="/nexalive#download" className={`px-8 py-4 rounded-2xl font-bold text-lg transition-all flex items-center gap-2 justify-center ${
                     videoSrc ? "bg-[var(--accent-primary)] text-white hover:opacity-90 shadow-lg" : "bg-nexa-primary text-white hover:bg-nexa-primary-dark shadow-nexa"
                   }`}>
-                    اطلب عرض أسعار <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
+                    {t("nexa.hw.cta.quote")} <ArrowRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
                   </a>
                   <a href="/hardware" className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all ${
                     videoSrc ? "bg-white/10 border border-white/20 text-white hover:bg-white/20" : "dark:border-white/15 dark:bg-white/5 dark:text-white border border-gray-300 bg-white text-gray-900 hover:scale-[1.02]"
                   }`}>
-                    جميع الأجهزة
+                    {t("nexa.hw.cta.allDevices")}
                   </a>
                 </div>
               </div>
@@ -116,9 +116,9 @@ export function HardwareDetailPage({
       <section className="py-20 md:py-28 dark:bg-nexa-surface bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-4">الميزات التقنية الأساسية</h2>
+            <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-4">{t("nexa.hw.features.title")}</h2>
             <p className="text-lg dark:text-nexa-text-secondary text-nexa-light-text-secondary max-w-2xl mx-auto">
-              أجهزة مصممة خصيصاً للعمل بكفاءة تامة مع أنظمة NexaLive.
+              {t("nexa.hw.features.subtitle")}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -131,8 +131,8 @@ export function HardwareDetailPage({
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-nexa-primary/20 to-transparent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <feat.icon className="w-7 h-7 text-nexa-primary" />
                 </div>
-                <h3 className="text-xl font-bold dark:text-white text-gray-900 mb-3">{feat.title}</h3>
-                <p className="dark:text-nexa-text-secondary text-nexa-light-text-secondary leading-relaxed">{feat.desc}</p>
+                <h3 className="text-xl font-bold dark:text-white text-gray-900 mb-3">{t(feat.titleKey)}</h3>
+                <p className="dark:text-nexa-text-secondary text-nexa-light-text-secondary leading-relaxed">{t(feat.descKey)}</p>
               </motion.div>
             ))}
           </div>
@@ -143,9 +143,9 @@ export function HardwareDetailPage({
       <section className="py-20 md:py-28 dark:bg-nexa-deep-dark bg-gray-50 border-t dark:border-white/5 border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-4">الموديلات المتوفرة</h2>
+            <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-4">{t("nexa.hw.models.title")}</h2>
             <p className="text-lg dark:text-nexa-text-secondary text-nexa-light-text-secondary max-w-2xl mx-auto">
-              اختر الجهاز المناسب لحجم أعمالك ومتطلباتك التقنية.
+              {t("nexa.hw.models.subtitle")}
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -156,7 +156,6 @@ export function HardwareDetailPage({
                 className="rounded-3xl dark:bg-nexa-surface bg-white border dark:border-white/10 border-gray-200 overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-nexa transition-all"
               >
                 <div className="w-full md:w-2/5 dark:bg-black/20 bg-gray-100 flex items-center justify-center p-8">
-                  {/* Using a placeholder visual since we don't have images yet */}
                   <div className="text-center">
                     <HeroIcon className="w-24 h-24 mx-auto text-nexa-primary mb-4 opacity-80" />
                     <span className="text-sm font-bold text-nexa-primary dark:bg-nexa-primary/10 bg-nexa-primary/5 px-3 py-1 rounded-full">{model.name}</span>
@@ -164,12 +163,12 @@ export function HardwareDetailPage({
                 </div>
                 <div className="p-8 w-full md:w-3/5 flex flex-col justify-center">
                   <h3 className="text-2xl font-bold dark:text-white text-gray-900 mb-2">{model.name}</h3>
-                  <p className="dark:text-nexa-text-secondary text-nexa-light-text-secondary text-sm mb-6">{model.description}</p>
+                  <p className="dark:text-nexa-text-secondary text-nexa-light-text-secondary text-sm mb-6">{t(model.descKey)}</p>
                   
                   <div className="space-y-3">
                     {model.specs.map((spec, j) => (
                       <div key={j} className="flex justify-between items-center py-2 border-b dark:border-white/5 border-gray-100 last:border-0">
-                        <span className="dark:text-nexa-text-muted text-gray-500 text-sm">{spec.label}</span>
+                        <span className="dark:text-nexa-text-muted text-gray-500 text-sm">{t(spec.labelKey)}</span>
                         <span className="dark:text-white text-gray-900 font-semibold text-sm text-left" dir="ltr">{spec.value}</span>
                       </div>
                     ))}
@@ -186,12 +185,12 @@ export function HardwareDetailPage({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="p-10 rounded-3xl dark:bg-nexa-primary/10 bg-blue-50 border dark:border-nexa-primary/20 border-blue-100 relative overflow-hidden">
             <div className="relative z-10 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold dark:text-white text-gray-900 mb-8">التوافق والدعم التقني</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-right">
-                {compatibility.map((item, i) => (
+              <h2 className="text-2xl md:text-3xl font-bold dark:text-white text-gray-900 mb-8">{t("nexa.hw.compat.title")}</h2>
+              <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${isRTL ? "text-right" : "text-left"}`}>
+                {compatibilityKeys.map((key, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-[var(--accent-success)] shrink-0" />
-                    <span className="dark:text-nexa-text-secondary text-gray-700">{item}</span>
+                    <span className="dark:text-nexa-text-secondary text-gray-700">{t(key)}</span>
                   </div>
                 ))}
               </div>
@@ -201,8 +200,8 @@ export function HardwareDetailPage({
       </section>
 
       <NexaCTABanner 
-        titleKey="جاهز لترقية اتصالاتك؟" 
-        descKey="تواصل معنا اليوم للحصول على استشارة مجانية وعرض أسعار لأجهزة NexaLive المناسبة لأعمالك." 
+        titleKey="nexa.hw.cta.readyTitle" 
+        descKey="nexa.hw.cta.readyDesc" 
       />
     </NexaPageWrapper>
   );
