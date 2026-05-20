@@ -15,10 +15,8 @@ interface FeatureSlide {
   id: string;
   icon: React.ElementType;
   video: string;
-  titleAr: string;
-  titleEn: string;
-  subtitleAr: string;
-  subtitleEn: string;
+  titleKey: string;
+  subtitleKey: string;
   stats: { value: string; labelAr: string; labelEn: string }[];
   colorClass: string;
   hexColor: string;
@@ -89,10 +87,8 @@ interface FeatureCard {
   iconColor: string;
   hexColor: string;
   href: string;
-  titleAr: string;
-  titleEn: string;
-  descAr: string;
-  descEn: string;
+  titleKey: string;
+  descKey: string;
   detailsAr: string[];
   detailsEn: string[];
 }
@@ -408,6 +404,7 @@ function FeaturesHero() {
 // ═══════════════════════════════════════════════════════════════
 
 function FeatureDetailModal({ feature, onClose, isRTL }: { feature: FeatureCard; onClose: () => void; isRTL: boolean }) {
+  const { t } = useNexaLanguage();
   const Icon = feature.icon;
 
   useEffect(() => {
@@ -529,8 +526,8 @@ function NexaFeaturesContent() {
         {/* 2. Features Grid */}
         <NexaSection
           id="features-grid"
-          titleKey={t("nexa.ui.all_features")}
-          subtitleKey={t("nexa.ui.click_any_feature_to_explore_i")}
+          titleKey="nexa.ui.all_features"
+          subtitleKey="nexa.ui.click_any_feature_to_explore_i"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {allFeatures.map((feat, i) => {
@@ -581,8 +578,8 @@ function NexaFeaturesContent() {
 
         {/* 3. CTA */}
         <NexaCTABanner
-          titleKey={t("nexa.ui.ready_to_upgrade_your_communic")}
-          descKey={t("nexa.ui.join_thousands_of_companies_re")}
+          titleKey="nexa.ui.ready_to_upgrade_your_communic"
+          descKey="nexa.ui.join_thousands_of_companies_re"
         />
       </NexaPageWrapper>
 
